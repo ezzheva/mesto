@@ -1,0 +1,9 @@
+.profile__info {
+  max-width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: end;
+  column-gap: 18px;
+  row-gap: 16px;
+}

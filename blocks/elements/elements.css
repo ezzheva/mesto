@@ -1,0 +1,19 @@
+.elements{
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  justify-content: center;
+  gap: 20px 17px;
+  border-radius: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width:767px) {
+  .elements {
+    grid-template-columns:  282px; /*1fr*/
+  }
+}

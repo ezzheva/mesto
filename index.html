@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
-<body>
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/Vector.svg" alt="логотип места Росиии">
+  </header>
+
+  <main class="content">
+    <section class="profile">
+      <div class="profile__container">
+      <img class="profile__avatar" src="./images/image.jpg" alt="аватарка">
+      
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="profile__button-edit" type="button">
+          <img class="profile__image" src="./images/Vector-pencil.svg" alt="карандаш"></button>
+        <p class="profile__about">Исследователь океана</p>
+      </div>
+    </div>
+      <button class="profile__button-add" type="button">
+        <img src="./images/Vector-plus.svg" alt="плюс">
+      </button>
+    </section>
+    <section class="elements"></section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__text">&copy; 2023 Езжева Ирина</p>
+  </footer>
   
 </body>
 </html>
