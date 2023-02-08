@@ -35,5 +35,32 @@
     <p class="footer__text">&copy; 2023 Езжева Ирина</p>
   </footer>
   
+  <!-- попап для профиля -->
+  <div class="popup">
+      <div class="popup__conteiner">
+        <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" id="popup-form">
+            <input type="text"
+                   class="popup__input" 
+                   name="user-name" 
+                   placeholder="Ваше Имя" 
+                   value="Жак-Ив Кусто" 
+                   required
+                   >
+            <input type="text" 
+                   class="popup__input" 
+                   name="user-hobby" 
+                   placeholder="Ваше хобби" 
+                   value="Исследователь океана" 
+                   required
+                   >
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close">
+          <img class="popup__image-close" src="./images/Close Icon.svg" alt="крестик">
+        </button>
+      </div>
+  </div>
+
 </body>
 </html>
