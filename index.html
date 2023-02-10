@@ -41,17 +41,15 @@
         <h2 class="popup__title">Редактировать профиль</h2>
           <form class="popup__form" id="popup-form">
             <input type="text"
-                   class="popup__input" 
-                   name="user-name" 
-                   placeholder="Ваше Имя" 
-                   value="Жак-Ив Кусто" 
+                   class="popup__input popup__input_type_name"
+                   name="user-name"
+                   placeholder="Ваше Имя"
                    required
                    >
             <input type="text" 
-                   class="popup__input" 
-                   name="user-hobby" 
-                   placeholder="Ваше хобби" 
-                   value="Исследователь океана" 
+                   class="popup__input popup__input_type_about" 
+                   name="user-about" 
+                   placeholder="Ваша должность"
                    required
                    >
             <button type="submit" class="popup__submit-button">Сохранить</button>
@@ -61,6 +59,6 @@
         </button>
       </div>
   </div>
-
+  <script src="./script/index.js"> </script>
 </body>
 </html>

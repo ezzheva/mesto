@@ -28,3 +28,5 @@
 
 @import url(../blocks/popup/__image-close/popup__image-close.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
+
+@import url(../blocks/popup/__active/popup__active.css);
