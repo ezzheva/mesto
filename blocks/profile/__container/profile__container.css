@@ -1,5 +1,20 @@
 .profile__container {
     display: flex;
     column-gap: 30px;
-    max-width: 83%;
+    width: 90%;
+}
+
+@media screen and (max-width: 733px) {
+    .profile__container{
+        width: 70%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .profile__container{
+        flex-direction: column;
+        row-gap: 22.25px;
+        align-items: center;
+    }
 }

@@ -9,10 +9,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  justify-self: flex-end;
-  transition: opacity .2s linear;
-}
-
-.profile__button-add:hover {
-  opacity: .6;
 }

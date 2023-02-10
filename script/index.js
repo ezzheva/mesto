@@ -33,6 +33,7 @@ function handleFormSubmit (evt) {
     profileName.textContent = nameInput.value;
     profileAbout.textContent = aboutInput.value;
 }
+
 formButton.addEventListener('click', function(){
   closePopup(popupEdit);
 });

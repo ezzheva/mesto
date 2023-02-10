@@ -18,24 +18,66 @@
       
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <button class="profile__button-edit" type="button">
+        <button class="profile__button-edit opacity" type="button">
           <img class="profile__image" src="./images/Vector-pencil.svg" alt="карандаш"></button>
         <p class="profile__about">Исследователь океана</p>
       </div>
     </div>
-      <button class="profile__button-add" type="button">
+      <button class="profile__button-add opacity" type="button">
         <img src="./images/Vector-plus.svg" alt="плюс">
       </button>
     </section>
-    <section class="elements"></section>
+    <section class="elements">
+      <div class="element">
+        <img class="element__img" src="./images/Paris.jpg" alt="Эйфелева башня">
+        <div class="element__block">
+          <h2 class="element__title">Париж</h2>
+          <button type="button" class="element__like opacity"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__img" src="./images/Italy.jpg" alt="Италия">
+        <div class="element__block">
+          <h2 class="element__title">Италия</h2>
+          <button type="button" class="element__like opacity"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__img" src="./images/indonesia.jpg" alt="горы в Индонезии">
+        <div class="element__block">
+          <h2 class="element__title">Индонезия</h2>
+          <button type="button" class="element__like opacity"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__img" src="./images/sydney.jpg" alt="мост в Сидней">
+        <div class="element__block">
+          <h2 class="element__title">Сидней</h2>
+          <button type="button" class="element__like opacity"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__img" src="./images/south korea.jpg" alt="дом в Южной Кореи">
+        <div class="element__block">
+          <h2 class="element__title">Южная Корея</h2>
+          <button type="button" class="element__like opacity"></button>
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__img" src="./images/Czech.jpg" alt="вид на Чехию">
+        <div class="element__block">
+          <h2 class="element__title">Чехия</h2>
+          <button type="button" class="element__like opacity"></button>
+        </div>
+      </div>
+    </section>
 
   </main>
 
   <footer class="footer">
-    <p class="footer__text">&copy; 2023 Езжева Ирина</p>
+    <p class="footer__copyright">&copy; 2023 Езжева Ирина</p>
   </footer>
   
-  <!-- попап для профиля -->
   <div class="popup">
       <div class="popup__conteiner">
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -54,7 +96,7 @@
                    >
             <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
-        <button type="button" class="popup__close">
+        <button type="button" class="popup__close opacity">
           <img class="popup__image-close" src="./images/Close Icon.svg" alt="крестик">
         </button>
       </div>

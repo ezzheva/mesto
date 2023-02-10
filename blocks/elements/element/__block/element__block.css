@@ -1,0 +1,8 @@
+.element__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 15px 31px 21px;
+  background: #FFFFFF;
+  color: #000000;
+}

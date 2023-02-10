@@ -1,14 +1,13 @@
 .header {
-  width: 68.75%;
+  max-width: 880px;
   margin: 45px auto 0;
   border-bottom: 1px solid rgb(84, 84, 84, .7);
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 900px) {
   .header {
-    width: 100%;
+    max-width: calc(100% - 19px);
     margin-top: 28px;
-    margin-bottom: 42px;/*поменять*/
   }
 }
