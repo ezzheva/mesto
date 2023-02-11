@@ -1,12 +1,12 @@
 .profile__container {
     display: flex;
     column-gap: 30px;
-    width: 90%;
+    width: 70%;
 }
 
-@media screen and (max-width: 733px) {
+@media screen and (max-width: 740px) {
     .profile__container{
-        width: 70%;
+        width: 100%;
         justify-content: center;
     }
 }
