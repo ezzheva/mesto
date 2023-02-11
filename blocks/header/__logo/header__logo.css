@@ -3,7 +3,7 @@
   padding-bottom: 41px;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
   .header__logo {
     max-width: 103.74px;
     padding-bottom: 27px;
