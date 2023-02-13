@@ -1,20 +1,19 @@
 .profile__container {
     display: flex;
     column-gap: 30px;
-    width: 70%;
+    width: 75%;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 1023px) {
     .profile__container{
         width: 100%;
         justify-content: center;
     }
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 767px) {
     .profile__container{
         flex-direction: column;
-        row-gap: 22.25px;
         align-items: center;
     }
 }

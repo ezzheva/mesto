@@ -5,8 +5,7 @@ let profileName = document.querySelector('.profile__name');
 let profileAbout = document.querySelector('.profile__about');
 let nameInput = document.querySelector('.popup__input_type_name');
 let aboutInput = document.querySelector('.popup__input_type_about');
-let formButton = document.querySelector('.popup__submit-button');
-let formElement = document.querySelector('#popup-form');
+let formElement = document.querySelector('.popup__form');
 
 buttonEdit.addEventListener('click', function(){
   openPopup(popupEdit);
@@ -32,10 +31,5 @@ function handleFormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileAbout.textContent = aboutInput.value;
+    closePopup(popupEdit);
 }
-
-formButton.addEventListener('click', function(){
-  closePopup(popupEdit);
-});
-
-

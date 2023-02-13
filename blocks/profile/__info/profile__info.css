@@ -1,5 +1,5 @@
 .profile__info {
-  width: 70%;
+  max-width: 336px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -8,9 +8,11 @@
   row-gap: 16px;
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 767px) {
   .profile__info {
-    width: 90%;
+    max-width: 282px;
     justify-content: center;
+    column-gap: 10px;
+    row-gap: 8px;
   }
 }

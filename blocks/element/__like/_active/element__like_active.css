@@ -1,4 +1,3 @@
 .element__like_active {
-  visibility: visible;
   background: url(../../../../../images/like-black.svg);
 }

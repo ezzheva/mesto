@@ -26,22 +26,14 @@
 
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit opacity" type="button">
-              <img
-                class="profile__image"
-                src="./images/Vector-pencil.svg"
-                alt="карандаш"
-              />
-            </button>
+            <button class="profile__button-edit" type="button" aria-label="Edit"></button>
             <p class="profile__about">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__button-add opacity" type="button">
-          <img src="./images/Vector-plus.svg" alt="плюс" />
-        </button>
+        <button class="profile__button-add" type="button" aria-label="Add"></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <article class="element">
           <img
             class="element__img"
             src="./images/Paris.jpg"
@@ -51,15 +43,15 @@
             <h2 class="element__title">Париж</h2>
             <button type="button" class="element__like opacity"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img class="element__img" src="./images/Italy.jpg" alt="Италия" />
           <div class="element__block">
             <h2 class="element__title">Италия</h2>
             <button type="button" class="element__like opacity"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             class="element__img"
             src="./images/indonesia.jpg"
@@ -69,8 +61,8 @@
             <h2 class="element__title">Индонезия</h2>
             <button type="button" class="element__like opacity"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             class="element__img"
             src="./images/sydney.jpg"
@@ -80,8 +72,8 @@
             <h2 class="element__title">Сидней</h2>
             <button type="button" class="element__like opacity"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             class="element__img"
             src="./images/south-korea.jpg"
@@ -91,8 +83,8 @@
             <h2 class="element__title">Южная Корея</h2>
             <button type="button" class="element__like opacity"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             class="element__img"
             src="./images/Czech.jpg"
@@ -102,7 +94,7 @@
             <h2 class="element__title">Чехия</h2>
             <button type="button" class="element__like opacity"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
 
@@ -113,7 +105,7 @@
     <div class="popup">
       <div class="popup__conteiner">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" id="popup-form">
+        <form class="popup__form" name="popup-form">
           <input
             type="text"
             class="popup__input popup__input_type_name"
@@ -128,17 +120,11 @@
             placeholder="О себе"
             required
           />
-          <button type="submit" class="popup__submit-button">Сохранить</button>
+          <button type="submit" class="popup__submit-button" aria-label="Save">Сохранить</button>
         </form>
-        <button type="button" class="popup__close opacity">
-          <img
-            class="popup__image-close"
-            src="./images/Close-Icon.svg"
-            alt="крестик"
-          />
-        </button>
+        <button type="button" class="popup__close" aria-label="Close"></button>
       </div>
     </div>
-    <script src="./script/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

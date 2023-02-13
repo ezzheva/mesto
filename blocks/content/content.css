@@ -1,11 +1,10 @@
 .content {
   max-width: 880px;
-  margin: 36.5px auto 67px;
+  margin: 0 auto 67px;
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 767px) {
   .content {
-    max-width: calc(100% - 19px);
-    margin-top: 38.25px;
+    margin-bottom: 48px;
   }
 }
