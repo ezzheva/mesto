@@ -1,8 +1,6 @@
 .profile {
-  max-width: 100%;
   margin-bottom: 51px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -10,7 +8,6 @@
   .profile {
     margin-bottom: 36px;
     flex-direction: column;
-    row-gap: 33px;
-    justify-content: center;
+    row-gap: 28px;
   }
 }
