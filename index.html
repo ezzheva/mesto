@@ -17,83 +17,44 @@
 
     <main class="content">
       <section class="profile">
-        <img
-            class="profile__avatar"
-            src="./images/image.jpg"
-            alt="аватарка"
-          />
+        <img class="profile__avatar" src="./images/image.jpg" alt="аватарка" />
         <div class="profile__container">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit" type="button" aria-label="Edit"></button>
+            <button
+              class="profile__button-edit"
+              type="button"
+              aria-label="Edit"
+            ></button>
           </div>
           <p class="profile__about">Исследователь океана</p>
         </div>
-        <button class="profile__button-add" type="button" aria-label="Add"></button>
+        <button
+          class="profile__button-add"
+          type="button"
+          aria-label="Add"
+        ></button>
       </section>
-      <section class="elements">
-        <article class="element">
-          <img
-            class="element__img"
-            src="./images/Paris.jpg"
-            alt="Эйфелева башня"
-          />
-          <div class="element__block">
-            <h2 class="element__title">Париж</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img class="element__img" src="./images/Italy.jpg" alt="Италия" />
-          <div class="element__block">
-            <h2 class="element__title">Италия</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__img"
-            src="./images/indonesia.jpg"
-            alt="горы в Индонезии"
-          />
-          <div class="element__block">
-            <h2 class="element__title">Индонезия</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__img"
-            src="./images/sydney.jpg"
-            alt="мост в Сидней"
-          />
-          <div class="element__block">
-            <h2 class="element__title">Сидней</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__img"
-            src="./images/south-korea.jpg"
-            alt="дом в Южной Кореи"
-          />
-          <div class="element__block">
-            <h2 class="element__title">Южная Корея</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__img"
-            src="./images/Czech.jpg"
-            alt="вид на Чехию"
-          />
-          <div class="element__block">
-            <h2 class="element__title">Чехия</h2>
-            <button type="button" class="element__like"></button>
-          </div>
-        </article>
+
+      <section class="cards">
+        <template id="card-template">
+          <article class="card">
+            <img class="card__img" src="#" alt="" />
+            <div class="card__block">
+              <h2 class="card__title"></h2>
+              <button
+                type="button"
+                class="card__like"
+                aria-label="like"
+              ></button>
+            </div>
+            <button
+              type="button"
+              class="card__delete"
+              aria-label="delete"
+            ></button>
+          </article>
+        </template>
       </section>
     </main>
 
@@ -101,7 +62,7 @@
       <p class="footer__copyright">&copy; 2023 Езжева Ирина</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup-edit">
       <div class="popup__conteiner">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="popup-form">
@@ -122,6 +83,51 @@
           <button type="submit" class="popup__submit-button">Сохранить</button>
         </form>
         <button type="button" class="popup__close" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="popup popup-add">
+      <div class="popup__conteiner">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form popup__form-add" name="popup-form">
+          <input
+            type="text"
+            class="popup__input popup__input_type_element-title"
+            name="element-name"
+            placeholder="Название"
+            required
+          />
+          <input
+            type="text"
+            class="popup__input popup__input_type_element-link"
+            name="element-link"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <button
+            type="submit"
+            class="popup__submit-button popup__submit-button-to-create"
+          >
+            Создать
+          </button>
+        </form>
+        <button
+          type="button"
+          class="popup__close popup__close-add"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+
+    <div class="popup popup_full-screen">
+      <div class="popup__container-full-screen">
+        <img class="popup__full-img" src="#" alt=" " />
+        <p class="popup__full-text"></p>
+        <button 
+          type="button" 
+          class="popup__close popup__close-full-screen"
+          aria-label="Close">
+        </button>
       </div>
     </div>
     <script src="./scripts/index.js"></script>
