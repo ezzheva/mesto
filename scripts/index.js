@@ -21,6 +21,8 @@ const cardTemplate = document.querySelector("#card-template").content;
 const cardsContainer = document.querySelector(".cards");
 const card = cardTemplate.querySelector(".card");
 
+const popupList = document.querySelectorAll(".popup")
+
 /*** вывод карточек из массива*/
 initialCards.forEach(function (cardData) {
   cardsContainer.prepend( createCard(cardData) );
@@ -58,9 +60,7 @@ function createCard(cardData) {
 
 /***помещаем новую карточку в верстку*/
 function addNewCard(cardData) {
-  /***Создаем карточку на основе данных*/
   const newCard = createCard(cardData);
-  /***Помещаем ее в контейнер карточек*/
   cardsContainer.prepend(newCard);
 }
 
@@ -88,16 +88,38 @@ function handleFormSubmitAdd(evt) {
 /**универсальная функция закрытия попапов */
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-}
+  document.removeEventListener("keydown", closeByKeyboard);
 
+}
+/**функция закрытия на крестик */
 function handleCloseButtonClick(evt) {
   const buttonCross = evt.target.closest(".popup");
   closePopup(buttonCross);
 }
 
-/***открытие  попапов*/
+/**функция закрытия попапов на Esc */
+function closeByKeyboard (evt) {
+  if (evt.key === "Escape") {
+    popupList.forEach( function(popup) {
+      closePopup(popup)
+    })
+  }  
+}
+
+/**функция закрытия попапаов на фон */
+// function closeByOverlay(popup){
+//   popup.addEventListener("click", (evt) => {
+//     if (evt.target === popup) {
+//       closePopup(popup)
+//     }
+//   });
+// }
+
+
+/***открытие попапов*/
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByKeyboard);
 }
 
 function openPopupEdit(nameInput, aboutInput) {

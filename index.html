@@ -71,6 +71,8 @@
             class="popup__input popup__input_type_name"
             name="user-name"
             placeholder="Ваше Имя"
+            minlength="2"
+            maxlength="40"
             required
           />
           <input
@@ -78,6 +80,8 @@
             class="popup__input popup__input_type_about"
             name="user-about"
             placeholder="О себе"
+            minlength="2"
+            maxlength="200"
             required
           />
           <button type="submit" class="popup__submit-button">Сохранить</button>
@@ -95,10 +99,12 @@
             class="popup__input popup__input_type_element-title"
             name="element-name"
             placeholder="Название"
+            minlength="2"
+            maxlength="30"
             required
           />
           <input
-            type="text"
+            type="url"
             class="popup__input popup__input_type_element-link"
             name="element-link"
             placeholder="Ссылка на картинку"
