@@ -89,7 +89,7 @@ function handleFormSubmitAdd(evt) {
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByKeyboard);
-
+  document.removeEventListener("click", closeByOverlay);
 }
 /**функция закрытия на крестик */
 function handleCloseButtonClick(evt) {
@@ -100,26 +100,23 @@ function handleCloseButtonClick(evt) {
 /**функция закрытия попапов на Esc */
 function closeByKeyboard (evt) {
   if (evt.key === "Escape") {
-    popupList.forEach( function(popup) {
-      closePopup(popup)
-    })
+    const keyboardEsc = document.querySelector('.popup_opened')
+      closePopup(keyboardEsc)
+    }
   }  
-}
 
 /**функция закрытия попапаов на фон */
-// function closeByOverlay(popup){
-//   popup.addEventListener("click", (evt) => {
-//     if (evt.target === popup) {
-//       closePopup(popup)
-//     }
-//   });
-// }
-
+function closeByOverlay(evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
+}
 
 /***открытие попапов*/
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByKeyboard);
+  document.addEventListener("click", closeByOverlay);
 }
 
 function openPopupEdit(nameInput, aboutInput) {

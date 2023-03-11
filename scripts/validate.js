@@ -16,7 +16,7 @@ function showInputError(formElement, inputElement, errorMessage, validationForm)
 };
 
 /** функция удаления класса с ошибкой*/
-function hideInputError(formElement, inputElement, validationForm){
+function hideInputError(formElement, inputElement, validationForm) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(validationForm.inputErrorClass)
     errorElement.classList.remove(validationForm.errorClass); 
@@ -24,7 +24,7 @@ function hideInputError(formElement, inputElement, validationForm){
 };
 
 /**функция проверки валидности поля */
-function checkInputValidity (formElement, inputElement, validationForm){
+function checkInputValidity(formElement, inputElement, validationForm) {
     if (!inputElement.validity.valid){
         showInputError(formElement, inputElement, inputElement.validationMessage, validationForm);
     } else {
@@ -36,7 +36,9 @@ function checkInputValidity (formElement, inputElement, validationForm){
 function setEventListeners(formElement, validationForm) {
     const inputList = Array.from(formElement.querySelectorAll(validationForm.inputSelector));
     const buttonElement = formElement.querySelector(validationForm.submitButtonSelector)
+
     toggleButtonState(inputList, buttonElement, validationForm);
+    
     inputList.forEach(function(inputElement) {
         inputElement.addEventListener('input', function () {
             checkInputValidity (formElement, inputElement, validationForm);
@@ -46,14 +48,14 @@ function setEventListeners(formElement, validationForm) {
 };
 
 /**функция проверки валидности всех полей для кнопки(возвращвет true или false) */
-function hasInvalidInput(inputList){
+function hasInvalidInput(inputList) {
     return inputList.some(function (inputElement) {
         return !inputElement.validity.valid
     });
 };
 
 /** функция состояния кнопки переключения */
-function toggleButtonState(inputList, buttonElement, validationForm){
+function toggleButtonState(inputList, buttonElement, validationForm) {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(validationForm.inactiveButtonClass)
         buttonElement.setAttribute('disabled', true);
@@ -69,9 +71,9 @@ function enableValidation(validationForm) {
     formList.forEach(function (formElement) {
         formElement.addEventListener('submit', function (evt){
             evt.preventDefault();
-          })
-          setEventListeners(formElement, validationForm);
         })
+          setEventListeners(formElement, validationForm);
+    })
 }
 
 enableValidation(validationForm);
