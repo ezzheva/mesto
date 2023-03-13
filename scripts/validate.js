@@ -65,6 +65,16 @@ function toggleButtonState(inputList, buttonElement, validationForm) {
     }
 };
 
+/**функция очищения ошибок */
+function resetError(formElement,validationForm) {
+    const inputList = Array.from(formElement.querySelectorAll(validationForm.inputSelector))
+    const buttonElement = formElement.querySelector(validationForm.submitButtonSelector)
+    inputList.forEach(function (inputElement) {
+        hideInputError(formElement, inputElement, validationForm)
+    })
+    toggleButtonState(inputList, buttonElement, validationForm)
+  }
+
 /** добавление обработчиков всем формам*/
 function enableValidation(validationForm) {
     const formList = Array.from(document.querySelectorAll(validationForm.formSelector));
