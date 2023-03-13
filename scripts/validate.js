@@ -57,11 +57,11 @@ function hasInvalidInput(inputList) {
 /** функция состояния кнопки переключения */
 function toggleButtonState(inputList, buttonElement, validationForm) {
     if (hasInvalidInput(inputList)) {
-        buttonElement.classList.add(validationForm.inactiveButtonClass)
         buttonElement.setAttribute('disabled', true);
+        buttonElement.classList.add(validationForm.inactiveButtonClass)
     } else {
-        buttonElement.classList.remove(validationForm.inactiveButtonClass) 
         buttonElement.removeAttribute('disabled');
+        buttonElement.classList.remove(validationForm.inactiveButtonClass) 
     }
 };
 

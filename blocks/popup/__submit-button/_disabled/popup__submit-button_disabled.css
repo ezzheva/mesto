@@ -2,4 +2,9 @@
   color: #c4c4c4;
   border: 1px solid rgba(0, 0, 0, .2);
   background-color: transparent;
+  cursor:default;
 }
+
+.popup__submit-button_disabled:hover {
+  background-color: #ffffff
+  }

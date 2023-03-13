@@ -21,9 +21,8 @@ const cardTemplate = document.querySelector("#card-template").content;
 const cardsContainer = document.querySelector(".cards");
 const card = cardTemplate.querySelector(".card");
 
-const popupList = document.querySelectorAll(".popup")
-const popupFromEdit = document.querySelector('popup__form-edit');
-//const buttonCreate = document.querySelector('popup__submit-button')
+const popupList = document.querySelectorAll(".popup");
+const buttonCreate = document.querySelector('popup__submit-button')
 
 /*** вывод карточек из массива*/
 initialCards.forEach(function (cardData) {
@@ -93,6 +92,7 @@ function closePopup(popup) {
   document.removeEventListener("keydown", closeByKeyboard);
   document.removeEventListener("click", closeByOverlay);
 }
+
 /**функция закрытия на крестик */
 function handleCloseButtonClick(evt) {
   const buttonCross = evt.target.closest(".popup");
@@ -114,18 +114,11 @@ function closeByOverlay(evt) {
   }
 }
 
-// function toggleSubmitNewButton() {
-//   if (titleInput.value.length === 0 || linkInput.value.length === 0) {
-//     buttonCreate.disabled = true;
-//     buttonCreate.classList.add("popup__submit-button_disabled");
-//   }
-// }
-
 /***открытие попапов*/
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByKeyboard);
-  //document.addEventListener("click", closeByOverlay);
+  popup.addEventListener("click", closeByOverlay);
 }
 
 function openPopupEdit() {
