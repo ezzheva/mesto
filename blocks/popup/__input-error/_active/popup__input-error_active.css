@@ -7,3 +7,11 @@
   width: 358px;
   margin: 0 36px 0;
 }
+
+@media screen and (max-width: 660px){
+  .popup__input-error_active{
+    width: 238px;
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}

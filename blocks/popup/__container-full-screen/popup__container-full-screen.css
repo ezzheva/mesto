@@ -3,5 +3,8 @@
   padding: 0;
   position: relative;
   max-width: 75vw;
-  min-height: 75vh;
+  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
