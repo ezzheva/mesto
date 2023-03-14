@@ -21,6 +21,8 @@ const cardTemplate = document.querySelector("#card-template").content;
 const cardsContainer = document.querySelector(".cards");
 const card = cardTemplate.querySelector(".card");
 
+const popupList = document.querySelectorAll(".popup");
+
 
 /*** вывод карточек из массива*/
 initialCards.forEach(function (cardData) {
@@ -87,7 +89,7 @@ function handleFormSubmitAdd(evt) {
 /**универсальная функция закрытия попапов */
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  removeOverlayKeyboardListeners(popup)
+  document.removeEventListener("keydown", closeByKeyboard);
 }
 
 /**функция закрытия на крестик */
@@ -99,33 +101,22 @@ function handleCloseButtonClick(evt) {
 /**функция закрытия попапов на Esc */
 function closeByKeyboard (evt) {
   if (evt.key === "Escape") {
-    const keyboardEsc = document.querySelector('.popup_opened')
+    const keyboardEsc = document.querySelector(".popup_opened")
       closePopup(keyboardEsc)
     }
   }  
 
 /**функция закрытия попапаов на фон */
 function closeByOverlay(evt) {
-  if (evt.target.classList.contains('popup_opened')) {
+  if (evt.target.classList.contains("popup_opened")) {
     closePopup(evt.target);
   }
-}
-
-/**функции добавления и удаления слушателей для оверлей и Esc */
-function addOverlayKeyboardListeners(popup) {
-  document.addEventListener("keydown", closeByKeyboard);
-  popup.addEventListener("click", closeByOverlay);
-}
-
-function removeOverlayKeyboardListeners(popup) {
-  document.removeEventListener("keydown", closeByKeyboard);
-  popup.removeEventListener("click", closeByOverlay);
 }
 
 /**открытие попапов*/
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  addOverlayKeyboardListeners(popup)
+  document.addEventListener("keydown", closeByKeyboard);
 }
 
 function openPopupEdit() {
@@ -139,6 +130,7 @@ function openPopupAdd(){
 }
 
 /***добавление обработчиков */
+
 buttonEdit.addEventListener("click", function () {
   openPopupEdit();
 });
@@ -146,6 +138,10 @@ buttonEdit.addEventListener("click", function () {
 buttonAdd.addEventListener("click", function () {
   openPopupAdd();
   openPopup(popupAdd);
+});
+
+popupList.forEach(function (item) {
+  item.addEventListener("click", closeByOverlay)
 });
 
 buttonPopupCloseList.forEach(function (item) {
