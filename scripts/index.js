@@ -1,3 +1,6 @@
+// import FormValidator from "./FormValidator.js";
+// import Card from "./Card.js";
+
 const buttonEdit = document.querySelector(".profile__button-edit");
 const buttonPopupCloseList = document.querySelectorAll(".popup__close");
 const popupEdit = document.querySelector(".popup-edit");
@@ -17,55 +20,61 @@ const popupFullScreen = document.querySelector(".popup_full-screen");
 const popupFullImage = document.querySelector(".popup__full-img");
 const popupFullText = document.querySelector(".popup__full-text");
 
-const cardTemplate = document.querySelector("#card-template").content;
 const cardsContainer = document.querySelector(".cards");
-const card = cardTemplate.querySelector(".card");
 
 const popupList = document.querySelectorAll(".popup");
 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 
-/*** вывод карточек из массива*/
+const validationForm = {
+  formSelector: '.popup__form', //сама форма
+  inputSelector: '.popup__input', //импутЫ
+  submitButtonSelector: '.popup__submit-button', // кнопка сохранить и создать
+  inactiveButtonClass: 'popup__submit-button_disabled', //неактивный класс кнопок
+  inputErrorClass: 'popup__input_type_error', //класс не валидного инпута
+  errorClass: 'popup__input-error_active' //информация об ошибке
+}
+
+
+
+/** вывод карточек из массива*/
 initialCards.forEach(function (cardData) {
-  cardsContainer.prepend( createCard(cardData) );
+  addNewCard(cardData)
 });
 
-/*** создание карточек */
-function createCard(cardData) {
-  const elementCard = card.cloneNode(true);
-  const elementCardTitle = elementCard.querySelector(".card__title");
-  const elementCardImage = elementCard.querySelector(".card__img");
-  const buttonDelete = elementCard.querySelector(".card__delete");
-  const buttonLike = elementCard.querySelector(".card__like");
-
-  elementCardImage.src = cardData.link;
-  elementCardImage.alt = cardData.name;
-  elementCardTitle.textContent = cardData.name;
-
-  buttonDelete.addEventListener("click", () => {
-    elementCard.remove();
-  });
-
-  buttonLike.addEventListener("click", () => {
-    buttonLike.classList.toggle("card__like_active");
-  });
-
-  elementCardImage.addEventListener("click", function () {
-    openPopup(popupFullScreen);
-    popupFullText.textContent = cardData.name;
-    popupFullImage.src = cardData.link;
-    popupFullImage.alt = cardData.name;
-  });
-
-  return elementCard;
-}
-
-/***помещаем новую карточку в верстку*/
+/** помещаем новую карточку в верстку*/
 function addNewCard(cardData) {
-  const newCard = createCard(cardData);
-  cardsContainer.prepend(newCard);
+  const card = new Card(cardData,"#card-template");
+  cardsContainer.prepend(card.generateCard());
+  closePopup(popupAdd);
 }
 
-/*** отправка форм */
+/** отправка форм */
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -76,29 +85,24 @@ function handleProfileFormSubmit(evt) {
 
 function handleFormSubmitAdd(evt) {
   evt.preventDefault();
-  const cardData = {
-    name: titleInput.value,
-    link: linkInput.value,
-    alt: titleInput.value,
-  };
-  addNewCard(cardData);
+  addNewCard({name: titleInput.value, link: linkInput.value})
   evt.target.reset();
   closePopup(popupAdd);
 }
 
-/**универсальная функция закрытия попапов */
+/** универсальная функция закрытия попапов */
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByKeyboard);
 }
 
-/**функция закрытия на крестик */
+/** функция закрытия на крестик */
 function handleCloseButtonClick(evt) {
   const buttonCross = evt.target.closest(".popup");
   closePopup(buttonCross);
 }
 
-/**функция закрытия попапов на Esc */
+/** функция закрытия попапов на Esc */
 function closeByKeyboard (evt) {
   if (evt.key === "Escape") {
     const keyboardEsc = document.querySelector(".popup_opened")
@@ -106,14 +110,14 @@ function closeByKeyboard (evt) {
     }
   }  
 
-/**функция закрытия попапаов на фон */
+/** функция закрытия попапаов на фон */
 function closeByOverlay(evt) {
   if (evt.target.classList.contains("popup_opened")) {
     closePopup(evt.target);
   }
 }
 
-/**открытие попапов*/
+/** открытие попапов*/
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByKeyboard);
@@ -122,14 +126,21 @@ function openPopup(popup) {
 function openPopupEdit() {
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
+  formValidatorEdit.resetError(formElementProfile);
   openPopup(popupEdit);
 }
 
 function openPopupAdd(){
-  resetError(popupAdd, validationForm);
+  formValidatorAdd.resetError(formElementAdd);
+  openPopup(popupAdd);
 }
 
-/***добавление обработчиков */
+/**добавление обработчиков */
+const formValidatorEdit = new FormValidator(validationForm, document.querySelector(".popup__form"));
+formValidatorEdit.enableValidation();
+
+const formValidatorAdd = new FormValidator(validationForm, document.querySelector(".popup__form-add"))
+formValidatorAdd.enableValidation();
 
 buttonEdit.addEventListener("click", function () {
   openPopupEdit();
@@ -151,3 +162,5 @@ buttonPopupCloseList.forEach(function (item) {
 formElementProfile.addEventListener("submit", handleProfileFormSubmit);
 
 formElementAdd.addEventListener("submit", handleFormSubmitAdd);
+
+//export {openPopup};
