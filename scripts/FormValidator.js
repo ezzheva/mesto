@@ -39,6 +39,16 @@ export class FormValidator {
     }
   }
 
+  /** функция добавления обработчиков всем полям формы */
+  _setEventListeners() {
+    this._inputList.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+    });
+  }
+
   /** функция проверки валидности всех полей для кнопки(возвращвет true или false) */
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
@@ -59,16 +69,6 @@ export class FormValidator {
         this._validationForm.inactiveButtonClass
       );
     }
-  }
-
-  /** функция добавления обработчиков всем полям формы */
-  _setEventListeners() {
-    this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-    });
   }
 
   /** функция очищения ошибок */

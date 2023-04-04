@@ -19,7 +19,6 @@ export default class Card {
 
     this._elementCardTitle = this._elementCard.querySelector(".card__title");
     this._elementCardImage = this._elementCard.querySelector(".card__img");
-    this._elementCardImage = this._elementCard.querySelector(".card__img");
     this._buttonDelete = this._elementCard.querySelector(".card__delete");
     this._buttonLike = this._elementCard.querySelector(".card__like");
 
@@ -41,13 +40,17 @@ export default class Card {
   }
 
   _hendleOpenPopupFullScreen() {
-    openPopup(popupFullScreen);
-    popupFullText.textContent = this._name;
-    popupFullImage.src = this._link;
-    popupFullImage.alt = this._name;
+    openPopup(this._popupFullScreen);
+    this._popupFullText.textContent = this._name;
+    this._popupFullImage.src = this._link;
+    this._popupFullImage.alt = this._name;
   }
 
   _setEventListeners() {
+    this._popupFullScreen = document.querySelector(".popup_full-screen");
+    this._popupFullImage = document.querySelector(".popup__full-img");
+    this._popupFullText = document.querySelector(".popup__full-text");
+    
     this._buttonLike.addEventListener("click", () => {
       this._handleButtonLike();
     });

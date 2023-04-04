@@ -16,10 +16,6 @@ const linkInput = document.querySelector(".popup__input_type_element-link");
 const titleInput = document.querySelector(".popup__input_type_element-title");
 const formElementAdd = document.querySelector(".popup__form-add");
 
-const popupFullScreen = document.querySelector(".popup_full-screen");
-const popupFullImage = document.querySelector(".popup__full-img");
-const popupFullText = document.querySelector(".popup__full-text");
-
 const cardsContainer = document.querySelector(".cards");
 
 const popupList = document.querySelectorAll(".popup");
