@@ -1,7 +1,6 @@
-// import { openPopup } from "./index.js";
+import { openPopup } from "./index.js";
 
-// export default 
-class Card {
+export default class Card {
   constructor(cardData,templateSelector){
     this._name = cardData.name;
     this._link= cardData.link;

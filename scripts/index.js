@@ -1,5 +1,5 @@
-// import FormValidator from "./FormValidator.js";
-// import Card from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
+import Card from "./Card.js";
 
 const buttonEdit = document.querySelector(".profile__button-edit");
 const buttonPopupCloseList = document.querySelectorAll(".popup__close");
@@ -163,4 +163,4 @@ formElementProfile.addEventListener("submit", handleProfileFormSubmit);
 
 formElementAdd.addEventListener("submit", handleFormSubmitAdd);
 
-//export {openPopup};
+export {openPopup};
