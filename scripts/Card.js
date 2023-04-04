@@ -1,23 +1,20 @@
 import { openPopup } from "./index.js";
 
 export default class Card {
-  constructor(cardData,templateSelector){
+  constructor(cardData, templateSelector) {
     this._name = cardData.name;
-    this._link= cardData.link;
+    this._link = cardData.link;
     this._templateSelector = templateSelector;
   }
 
-  _getTemplate(){
-    this._cardTemplate = document
-    .querySelector(this._templateSelector)
-    .content;
-    this._card = this._cardTemplate.querySelector(".card")
-    .cloneNode(true);
+  _getTemplate() {
+    this._cardTemplate = document.querySelector(this._templateSelector).content;
+    this._card = this._cardTemplate.querySelector(".card").cloneNode(true);
 
     return this._card;
   }
 
-  generateCard(){
+  generateCard() {
     this._elementCard = this._getTemplate();
 
     this._elementCardTitle = this._elementCard.querySelector(".card__title");
@@ -31,35 +28,35 @@ export default class Card {
     this._elementCardTitle.textContent = this._name;
 
     this._setEventListeners();
-   
+
     return this._elementCard;
   }
-  
-  _handleButtonLike(){
+
+  _handleButtonLike() {
     this._buttonLike.classList.toggle("card__like_active");
   }
 
-  _handleButtonDelete(){
+  _handleButtonDelete() {
     this._elementCard.remove();
   }
 
-  _hendleOpenPopupFullScreen(){
+  _hendleOpenPopupFullScreen() {
     openPopup(popupFullScreen);
     popupFullText.textContent = this._name;
     popupFullImage.src = this._link;
     popupFullImage.alt = this._name;
   }
 
-  _setEventListeners(){
+  _setEventListeners() {
     this._buttonLike.addEventListener("click", () => {
       this._handleButtonLike();
     });
 
     this._buttonDelete.addEventListener("click", () => {
       this._handleButtonDelete();
-     });
+    });
 
-    this._elementCardImage.addEventListener('click', () =>{
+    this._elementCardImage.addEventListener("click", () => {
       this._hendleOpenPopupFullScreen();
     });
   }
