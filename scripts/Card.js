@@ -1,10 +1,9 @@
-import { openPopup } from "./index.js";
-
 export default class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -39,18 +38,7 @@ export default class Card {
     this._elementCard.remove();
   }
 
-  _hendleOpenPopupFullScreen() {
-    openPopup(this._popupFullScreen);
-    this._popupFullText.textContent = this._name;
-    this._popupFullImage.src = this._link;
-    this._popupFullImage.alt = this._name;
-  }
-
-  _setEventListeners() {
-    this._popupFullScreen = document.querySelector(".popup_full-screen");
-    this._popupFullImage = document.querySelector(".popup__full-img");
-    this._popupFullText = document.querySelector(".popup__full-text");
-    
+  _setEventListeners() {    
     this._buttonLike.addEventListener("click", () => {
       this._handleButtonLike();
     });
@@ -60,7 +48,7 @@ export default class Card {
     });
 
     this._elementCardImage.addEventListener("click", () => {
-      this._hendleOpenPopupFullScreen();
+      this._handleCardClick(this._name, this._link);
     });
   }
 }
