@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href= "./pages/index.css"/> -->
   </head>
   <body class="page">
     <header class="header">
       <img
         class="header__logo"
-        src="./images/Vector.svg"
+        src="<%=require('./images/Vector.svg')%>"
         alt="логотип места Росиии"
       />
     </header>
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/image.jpg" alt="аватарка" />
+        <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="аватарка" />
         <div class="profile__container">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -131,6 +131,6 @@
         <button type="button" class="popup__close" aria-label="Close"></button>
       </div>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
+    <!-- <script type="module" src="./pages/index.js"></script> -->
   </body>
 </html>
