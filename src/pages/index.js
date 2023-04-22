@@ -4,6 +4,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { initialCards } from "../utils/constants.js";
 import "./index.css";
 
 const buttonEdit = document.querySelector(".profile__button-edit");
@@ -11,32 +12,6 @@ const nameInput = document.querySelector(".popup__input_type_name");
 const aboutInput = document.querySelector(".popup__input_type_about");
 const buttonAdd = document.querySelector(".profile__button-add");
 
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 const validationForm = {
   formSelector: ".popup__form", //сама форма
@@ -86,24 +61,24 @@ const handleCardClick = (name, link) => {
 };
 
 /**добавление карточки в массив*/
-const section = new Section(
+const cardsContainer = new Section(
   {
     cardData: initialCards,
     renderer: (cardData) => {
       const cardElement = createCard(cardData);
-      section.addItem(cardElement);
+      cardsContainer.addItem(cardElement);
     },
   },
   ".cards"
 );
 
-section.renderItems();
+cardsContainer.renderItems();
 
 /** добавление карточки */
 const popupWithFormAdd = new PopupWithForm({
   popupSelector: ".popup-add",
   handleFormSubmit: (item) => {
-    section.addItem(
+    cardsContainer.addItem(
       createCard({
         name: item["element-name"],
         link: item["element-link"],

@@ -36,9 +36,10 @@ export default class Card {
 
   _handleButtonDelete() {
     this._elementCard.remove();
+    this._elementCard = null;
   }
 
-  _setEventListeners() {    
+  _setEventListeners() {
     this._buttonLike.addEventListener("click", () => {
       this._handleButtonLike();
     });
