@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <!-- <link rel="stylesheet" href= "./pages/index.css"/> -->
   </head>
   <body class="page">
     <header class="header">
@@ -20,14 +19,14 @@
         <img class="profile__avatar" src="<%=require('./images/image.jpg')%>" alt="аватарка" />
         <div class="profile__container">
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button
               class="profile__button-edit"
               type="button"
               aria-label="Edit"
             ></button>
           </div>
-          <p class="profile__about">Исследователь океана</p>
+          <p class="profile__about"></p>
         </div>
         <button
           class="profile__button-add"
@@ -41,12 +40,15 @@
           <article class="card">
             <img class="card__img" src="#" alt="" />
             <div class="card__block">
-              <h2 class="card__title"></h2>
-              <button
-                type="button"
-                class="card__like"
-                aria-label="like"
-              ></button>
+              <h2 class="card__title"></h2> 
+              <div class="card__like-counter">                                                                         
+                <button
+                  type="button"
+                  class="card__like"
+                  aria-label="like"
+                ></button>
+                <p class="card__number-likes">0</p>
+              </div>
             </div>
             <button
               type="button"

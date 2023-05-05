@@ -4,8 +4,9 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { initialCards } from "../utils/constants.js";
+// import { initialCards } from "../utils/constants.js";
 import "./index.css";
+import { Api } from "../components/Api.js";
 
 const buttonEdit = document.querySelector(".profile__button-edit");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -21,6 +22,42 @@ const validationForm = {
   inputErrorClass: "popup__input_type_error", //класс не валидного инпута
   errorClass: "popup__input-error_active", //информация об ошибке
 };
+/**обьект Api */
+const api = new Api({
+  url: "https://nomoreparties.co/v1/cohort-65",
+  headers: {
+    authorization: '65d17e81-1fc6-4932-9a8f-ccbfe0018846',
+		'Content-Type': 'application/json'
+  }
+})
+let userId;
+
+/**отрисовка карточек */
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+.then(
+  ([data,cardData]) => {
+    userId = data._id;
+    userInfo.setUserInfo(data);
+  
+		cardsContainer.renderItems(cardData);
+	})
+	.catch((err) => {
+    console.log(err)
+  });
+
+// api
+// .getInitialCards()
+// .then((res) => cardsContainer.renderItems(res))
+// .catch((err) => {
+//   console.log(err)
+// });
+
+// api
+// .getUserInfo()
+// .then((res) => userInfo.setUserInfo(res))
+// .catch((err) => {
+//   console.log(err)
+// });
 
 /**класс о пользователе */
 const userInfo = new UserInfo({
@@ -32,11 +69,16 @@ const userInfo = new UserInfo({
 const popupWithFormEdit = new PopupWithForm({
   popupSelector: ".popup-edit",
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo({
-      profileName: data["user-name"],
-      profileAbout: data["about"],
-    });
-  },
+      return api
+      .patchUserInfo(data)
+      .then ((res) => {
+       userInfo.setUserInfo(res);
+      //  popupWithFormEdit.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
 });
 
 popupWithFormEdit.setEventListeners();
@@ -52,41 +94,71 @@ function handleProfileFormSubmit() {
 
 /** создание карточки */
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleCardClick);
+  const card = new Card(
+    cardData,
+     userId,
+      "#card-template",
+       handleCardClick,
+       handleLikeCard,
+       handleDeleteLike
+       );
   return card.generateCard();
 }
-
+/**открытая карточка */
 const handleCardClick = (name, link) => {
   popupFullScreen.open(name, link);
 };
 
-/**добавление карточки в массив*/
+/**рендер карточек*/
 const cardsContainer = new Section(
-  {
-    cardData: initialCards,
+  { 
     renderer: (cardData) => {
-      const cardElement = createCard(cardData);
-      cardsContainer.addItem(cardElement);
+      const card = createCard(cardData);
+      cardsContainer.addItem(card);
     },
   },
   ".cards"
 );
 
-cardsContainer.renderItems();
-
 /** добавление карточки */
 const popupWithFormAdd = new PopupWithForm({
   popupSelector: ".popup-add",
-  handleFormSubmit: (item) => {
-    cardsContainer.addItem(
-      createCard({
-        name: item["element-name"],
-        link: item["element-link"],
-      })
-    );
-  },
+  handleFormSubmit: (cardData) => {
+    return api.addNewCard(cardData)
+      .then((res) => {
+        const card = createCard(res) 
+        cardsContainer.addItem(card);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+   }
 });
 popupWithFormAdd.setEventListeners();
+
+/**функция добавления лайка */
+function handleLikeCard(cardId,card) {
+	api.getLike(cardId)
+  .then((res) => {
+    card.handleButtonLike()
+    card.numberLikes.textContent = res.likes.length;
+  })
+		.catch((err) => {
+			console.log(err);
+		});
+}
+/**функция удаления лайка */
+function handleDeleteLike(cardId,card) {
+	api.deleteLike(cardId)
+  .then((res) => {
+    card.handleButtonLike()
+    card.numberLikes.textContent = res.likes.length;
+  })
+
+		.catch((err) => {
+			console.log(err);
+		});
+}
 
 /** отправление форм карточки*/
 const handleFormSubmitAdd = () => {
