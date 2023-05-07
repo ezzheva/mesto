@@ -7,6 +7,7 @@ import { UserInfo } from "../components/UserInfo.js";
 // import { initialCards } from "../utils/constants.js";
 import "./index.css";
 import { Api } from "../components/Api.js";
+import {PopupConfirm} from "../components/PopupConfirm.js";
 
 const buttonEdit = document.querySelector(".profile__button-edit");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -44,20 +45,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 	.catch((err) => {
     console.log(err)
   });
-
-// api
-// .getInitialCards()
-// .then((res) => cardsContainer.renderItems(res))
-// .catch((err) => {
-//   console.log(err)
-// });
-
-// api
-// .getUserInfo()
-// .then((res) => userInfo.setUserInfo(res))
-// .catch((err) => {
-//   console.log(err)
-// });
 
 /**класс о пользователе */
 const userInfo = new UserInfo({
@@ -100,11 +87,17 @@ function createCard(cardData) {
       "#card-template",
        handleCardClick,
        handleLikeCard,
-       handleDeleteLike
+       handleDeleteLike,
+       handleCardDelete
        );
   return card.generateCard();
 }
-/**открытая карточка */
+
+/**модалка удаления карточки */
+const handleCardDelete = (cardId,card) => {
+  popupConfirm.open(cardId,card);
+}
+/**модалка весь экран карточки*/
 const handleCardClick = (name, link) => {
   popupFullScreen.open(name, link);
 };
@@ -135,6 +128,21 @@ const popupWithFormAdd = new PopupWithForm({
    }
 });
 popupWithFormAdd.setEventListeners();
+
+/**удаление карточки */
+const  popupConfirm = new PopupConfirm({
+  popupSelector: ".popup-trash",
+  handleFormSubmit: (cardId, card) => {
+    return api.deleteCard(cardId)
+    .then(() => {
+      card.handleButtonDelete();
+    })
+    .catch((err) => {
+			console.log(err);
+		});
+  }
+})
+popupConfirm.setEventListeners();
 
 /**функция добавления лайка */
 function handleLikeCard(cardId,card) {

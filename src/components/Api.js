@@ -34,16 +34,15 @@ export class Api{
         })
             .then((res) => this._checkError(res))
     }
-
     
-    // /**удаление карточек */
-    // deleteCard(cardId) {
-    //     return fetch(`${this._url}/cards/${cardId}`, {
-    //         method: "DELETE",
-    //         headers: this._headers,
-    //     })
-    //     .then((res) => this._checkError(res));
-    // }
+    /**удаление карточек */
+    deleteCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}`, {
+            method: "DELETE",
+            headers: this._headers,
+        })
+        .then((res) => this._checkError(res));
+    }
 
     /**получение с сервера данных */
     getUserInfo() {
