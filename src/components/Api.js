@@ -4,12 +4,12 @@ export class Api{
         this._headers = options.headers;
     }
 
-    /**проверка статуса*/
+    /**проверка статуса ошибки*/
     _checkError(res){
         if (res.ok){
             return res.json();
         } else {
-        return Promise.reject(`Статус ошибки: ${res.status}`);
+        return Promise.reject(`Ошибка: ${res.status}`);
         }
     }
 
@@ -34,15 +34,6 @@ export class Api{
         })
             .then((res) => this._checkError(res))
     }
-    
-    /**удаление карточек */
-    deleteCard(cardId) {
-        return fetch(`${this._url}/cards/${cardId}`, {
-            method: "DELETE",
-            headers: this._headers,
-        })
-        .then((res) => this._checkError(res));
-    }
 
     /**получение с сервера данных */
     getUserInfo() {
@@ -52,6 +43,7 @@ export class Api{
 		})
         .then((res) => this._checkError(res));
 	}
+
     /**изменение данных с сервера */
     patchUserInfo(data) {
         return fetch(`${this._url}/users/me`, {
@@ -73,6 +65,7 @@ export class Api{
         })
         .then((res) => this._checkError(res));
     }
+    
     /**удаление лайка */
     deleteLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
@@ -81,18 +74,23 @@ export class Api{
         })
         .then((res) => this._checkError(res));
     }
-
-    // getInitialInfo(){
-    //     return Promise.all([this.getInitialCards()])
-    // }
     
+    /**удаление карточек */
+    deleteCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}`, {
+            method: "DELETE",
+            headers: this._headers,
+        })
+        .then((res) => this._checkError(res));
+    }
 
-    // /**измениние аватара */
-    // patchAvatarInfo(data) {
-    //     return fetch(`${this._url}/users/me/avatar`, {
-    //       method: "PATCH",
-    //       headers: this._headers,
-    //       body: JSON.stringify(data),
-    //     }).then((res) => this._checkError(res));
-    // }
+    /**изменение аватара */
+    patchAvatarInfo(data) {
+        return fetch(`${this._url}/users/me/avatar`, {
+          method: "PATCH",
+          headers: this._headers,
+          body: JSON.stringify(data),
+        })
+        .then((res) => this._checkError(res));
+    }
 }

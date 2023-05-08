@@ -13,6 +13,7 @@ const buttonEdit = document.querySelector(".profile__button-edit");
 const nameInput = document.querySelector(".popup__input_type_name");
 const aboutInput = document.querySelector(".popup__input_type_about");
 const buttonAdd = document.querySelector(".profile__button-add");
+const buttonAvatar = document.querySelector(".pofile__avatar-box");
 
 
 const validationForm = {
@@ -39,7 +40,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   ([data,cardData]) => {
     userId = data._id;
     userInfo.setUserInfo(data);
-  
 		cardsContainer.renderItems(cardData);
 	})
 	.catch((err) => {
@@ -50,6 +50,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const userInfo = new UserInfo({
   profileName: ".profile__name",
   profileAbout: ".profile__about",
+  profileAvatar: ".profile__avatar"
 });
 
 /**редактирование профиля */
@@ -60,7 +61,6 @@ const popupWithFormEdit = new PopupWithForm({
       .patchUserInfo(data)
       .then ((res) => {
        userInfo.setUserInfo(res);
-      //  popupWithFormEdit.close();
       })
       .catch((err) => {
         console.log(err);
@@ -77,6 +77,28 @@ function handleProfileFormSubmit() {
   nameInput.value = user.name;
   aboutInput.value = user.about;
   formValidators["popup-form"].resetValidation();
+}
+
+/**редактироввание аватара */
+  const popupWithFormAvatar = new PopupWithForm({
+    popupSelector: ".popup-avatar",
+    handleFormSubmit: (data) =>  {
+      return api
+      .patchAvatarInfo(data)
+      .then((res) => {
+        userInfo.setUserInfo(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  })
+  popupWithFormAvatar.setEventListeners();
+
+/**отправление форм аватара */
+function hendleAvatarFormSubmit(){
+  popupWithFormAvatar.open();
+  formValidators["popup-form-avatar"].resetValidation();
 }
 
 /** создание карточки */
@@ -132,10 +154,10 @@ popupWithFormAdd.setEventListeners();
 /**удаление карточки */
 const  popupConfirm = new PopupConfirm({
   popupSelector: ".popup-trash",
-  handleFormSubmit: (cardId, card) => {
+  handleFormSubmit: (cardId, cardData) => {
     return api.deleteCard(cardId)
     .then(() => {
-      card.handleButtonDelete();
+      cardData.handleButtonDelete();
     })
     .catch((err) => {
 			console.log(err);
@@ -145,31 +167,30 @@ const  popupConfirm = new PopupConfirm({
 popupConfirm.setEventListeners();
 
 /**функция добавления лайка */
-function handleLikeCard(cardId,card) {
+function handleLikeCard(cardId,cardData) {
 	api.getLike(cardId)
   .then((res) => {
-    card.handleButtonLike()
-    card.numberLikes.textContent = res.likes.length;
+    cardData.handleButtonLike()
+    cardData.numberLikes.textContent = res.likes.length;
   })
 		.catch((err) => {
 			console.log(err);
 		});
 }
 /**функция удаления лайка */
-function handleDeleteLike(cardId,card) {
+function handleDeleteLike(cardId,cardData) {
 	api.deleteLike(cardId)
   .then((res) => {
-    card.handleButtonLike()
-    card.numberLikes.textContent = res.likes.length;
+    cardData.handleButtonLike()
+    cardData.numberLikes.textContent = res.likes.length;
   })
-
 		.catch((err) => {
 			console.log(err);
 		});
 }
 
 /** отправление форм карточки*/
-const handleFormSubmitAdd = () => {
+function handleFormSubmitAdd(){
   popupWithFormAdd.open();
   formValidators["popup-form-add"].resetValidation();
 };
@@ -203,3 +224,4 @@ enableValidation(validationForm);
 /**добавление обработчиков */
 buttonEdit.addEventListener("click", handleProfileFormSubmit);
 buttonAdd.addEventListener("click", handleFormSubmitAdd);
+buttonAvatar.addEventListener("click", hendleAvatarFormSubmit);
