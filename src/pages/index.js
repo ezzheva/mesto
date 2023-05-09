@@ -7,7 +7,7 @@ import { UserInfo } from "../components/UserInfo.js";
 // import { initialCards } from "../utils/constants.js";
 import "./index.css";
 import { Api } from "../components/Api.js";
-import { PopupConfirm } from "../components/PopupConfirm.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 
 const buttonEdit = document.querySelector(".profile__button-edit");
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -165,7 +165,7 @@ const popupWithFormAdd = new PopupWithForm({
 popupWithFormAdd.setEventListeners();
 
 /**удаление карточки */
-const popupConfirm = new PopupConfirm({
+const popupConfirm = new PopupWithConfirmation({
   popupSelector: ".popup-trash",
   handleFormSubmit: (cardId, cardData) => {
     return api
