@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import Popup from "./Popup.js";
 
 export class PopupWithForm extends Popup {
@@ -6,8 +7,8 @@ export class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._form = this._popup.querySelector(".popup__form");
     this._inputList = this._popup.querySelectorAll(".popup__input");
-    this._buttonSubmit = this._popup.querySelector(".popup__submit-button");
-    this._textButtonSubmit = this._buttonSubmit.textContent;
+    this._popupSubmitButton = this._popup.querySelector(".popup__submit-button");
+    this._textButton = this._popupSubmitButton.textContent;
   }
 
   _getInputValues() {
@@ -35,11 +36,11 @@ export class PopupWithForm extends Popup {
   }
 
   /** изменение кнопки отправки*/
-  changeButtonSubmit(loading){
-    if (loading) {
-      this._buttonSubmit.textContent = "Сохранение..."
+  changeButtonSubmit(data){
+    if (data) {
+      this._popupSubmitButton.textContent = "Сохранение..."
     } else {
-      this._buttonSubmit.textContent = this._textButtonSubmit;
+      this._popupSubmitButton.textContent = this._textButton;
     }
   }
 }
