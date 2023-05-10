@@ -4,7 +4,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
-// import { initialCards } from "../utils/constants.js";
+import { validationForm } from "../utils/constants.js";
 import "./index.css";
 import { Api } from "../components/Api.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
@@ -13,16 +13,8 @@ const buttonEdit = document.querySelector(".profile__button-edit");
 const nameInput = document.querySelector(".popup__input_type_name");
 const aboutInput = document.querySelector(".popup__input_type_about");
 const buttonAdd = document.querySelector(".profile__button-add");
-const buttonAvatar = document.querySelector(".pofile__avatar-box");
+const buttonAvatar = document.querySelector(".profile__avatar-box");
 
-const validationForm = {
-  formSelector: ".popup__form", //сама форма
-  inputSelector: ".popup__input", //импутЫ
-  submitButtonSelector: ".popup__submit-button", // кнопка сохранить и создать
-  inactiveButtonClass: "popup__submit-button_disabled", //неактивный класс кнопок
-  inputErrorClass: "popup__input_type_error", //класс не валидного инпута
-  errorClass: "popup__input-error_active", //информация об ошибке
-};
 
 /**обьект Api */
 const api = new Api({
@@ -57,7 +49,6 @@ const userInfo = new UserInfo({
 const popupWithFormEdit = new PopupWithForm({
   popupSelector: ".popup-edit",
   handleFormSubmit: (data) => {
-    popupWithFormEdit.changeButtonSubmit(true);
     return api
       .patchUserInfo(data)
       .then((res) => {
@@ -66,10 +57,7 @@ const popupWithFormEdit = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        popupWithFormEdit.changeButtonSubmit(false);
-      });
-  },
+  }
 });
 
 popupWithFormEdit.setEventListeners();
@@ -87,7 +75,6 @@ function handleProfileFormSubmit() {
 const popupWithFormAvatar = new PopupWithForm({
   popupSelector: ".popup-avatar",
   handleFormSubmit: (data) => {
-    popupWithFormAvatar.changeButtonSubmit(true);
     return api
       .patchAvatarInfo(data)
       .then((res) => {
@@ -96,10 +83,7 @@ const popupWithFormAvatar = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        popupWithFormAvatar.changeButtonSubmit(false);
-      });
-  },
+  }
 });
 popupWithFormAvatar.setEventListeners();
 
@@ -147,7 +131,6 @@ const cardsContainer = new Section(
 const popupWithFormAdd = new PopupWithForm({
   popupSelector: ".popup-add",
   handleFormSubmit: (cardData) => {
-    popupWithFormAdd.changeButtonSubmit(true);
     return api
       .addNewCard(cardData)
       .then((res) => {
@@ -157,10 +140,7 @@ const popupWithFormAdd = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        popupWithFormAdd.changeButtonSubmit(false);
-      });
-  },
+  }
 });
 popupWithFormAdd.setEventListeners();
 

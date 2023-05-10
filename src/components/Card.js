@@ -82,11 +82,6 @@ export default class Card {
     if (this._ownerId != this._userId) {
       this._buttonDelete.remove();
     }
-    // if(this._userId === this._ownerId){
-    //   this._buttonDelete.classList.remove("card__delete_active")
-    // } else {
-    //   this._buttonDelete.classList.add("card__delete_active")
-    // }
   }
 
   /**слушатели */
